@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 source $HVM/config.sh
 if [[ $HAXE == 2* ]]; then
 	exec $HAXEPATH/haxelib "$@"
