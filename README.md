@@ -12,12 +12,12 @@ hvm install
 Running `hvm install` creates these symlinks:
 
 ```shell
-sudo ln -sf ~/.vhm/haxe.sh /usr/bin/haxe
-sudo ln -sf ~/.vhm/haxelib.sh /usr/bin/haxelib
-sudo ln -sf ~/.vhm/neko.sh /usr/bin/neko
-sudo ln -sf ~/.vhm/nekotools.sh /usr/bin/nekotools
-sudo ln -sf ~/.vhm/nekoc.sh /usr/bin/nekoc
-sudo ln -sf ~/.vhm/nekoml.sh /usr/bin/nekoml
+sudo ln -sf ~/.hvm/haxe.sh /usr/bin/haxe
+sudo ln -sf ~/.hvm/haxelib.sh /usr/bin/haxelib
+sudo ln -sf ~/.hvm/neko.sh /usr/bin/neko
+sudo ln -sf ~/.hvm/nekotools.sh /usr/bin/nekotools
+sudo ln -sf ~/.hvm/nekoc.sh /usr/bin/nekoc
+sudo ln -sf ~/.hvm/nekoml.sh /usr/bin/nekoml
 ```
 
 Each of those scripts sources `config.sh`, which figures out which binary to use.
