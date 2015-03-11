@@ -13,6 +13,9 @@ if [ -e .hvmrc ]; then
 	source .hvmrc
 fi
 
+# source the current platform
+source $HVM/platform.sh
+
 # configure paths
 export HAXEPATH=$HVM/versions/haxe/$HAXE
 export HAXE_STD_PATH=$HAXEPATH/std
@@ -21,14 +24,26 @@ export NEKOPATH=$HVM/versions/neko/$NEKO
 export DYLD_FALLBACK_LIBRARY_PATH=$NEKOPATH
 
 # install haxe if needed
+
 if [ ! -d "$HAXEPATH" ]; then
 	mkdir -p "$HVM/versions/haxe"
 
 	ARCHIVE="$HAXEPATH.tar.gz"
-	URL="http://old.haxe.org/file/haxe-$HAXE-osx.tar.gz"
+
+	case $PLATFORM in
+		'OSX') URL="http://old.haxe.org/file/haxe-$HAXE-osx.tar.gz" ;;
+		'LINUX32') URL="http://old.haxe.org/file/haxe-$HAXE-linux32.tar.gz" ;;
+		'LINUX64') URL="http://old.haxe.org/file/haxe-$HAXE-linux64.tar.gz" ;;
+	esac
+
 
 	if [ "$HAXE" == "dev" ]; then
-		URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/haxe/mac/haxe_latest.tar.gz"
+		case $PLATFORM in
+			'OSX') URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/haxe/mac/haxe_latest.tar.gz" ;;
+			'LINUX32') URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/haxe/linux32/haxe_latest.tar.gz" ;;
+			'LINUX64') URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/haxe/linux64/haxe_latest.tar.gz" ;;
+		esac
+
 	fi
 
 	echo "downloading $URL"
@@ -44,10 +59,20 @@ if [ ! -d "$NEKOPATH" ]; then
 	mkdir -p "$HVM/versions/neko"
 
 	ARCHIVE="$NEKOPATH.tar.gz"
-	URL="http://nekovm.org/_media/neko-$NEKO-osx.tar.gz?id=download&cache=cache"
+
+	case $PLATFORM in
+		'OSX') URL="http://nekovm.org/_media/neko-$NEKO-osx.tar.gz?id=download&cache=cache" ;;
+		'LINUX32') URL="http://nekovm.org/_media/neko-$NEKO-linux.tar.gz?id=download&cache=cache" ;;
+		'LINUX64') URL="http://nekovm.org/_media/neko-$NEKO-linux64.tar.gz?id=download&cache=cache" ;;
+	esac
 
 	if [ "$NEKO" == "dev" ]; then
 		URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/mac/neko_latest.tar.gz"
+		case $PLATFORM in
+			'OSX') "http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/mac/neko_latest.tar.gz" ;;
+			'LINUX32') "http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/linux32/neko_latest.tar.gz" ;;
+			'LINUX64') "http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/linux64/neko_latest.tar.gz" ;;
+		esac
 	fi
 
 	echo "downloading $URL"

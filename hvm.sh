@@ -1,10 +1,15 @@
 export HVM=$HOME/.hvm
 
 source $HVM/versions.sh
+source $HVM/platform.sh
 
 hvm_get_haxe_versions() {
 	HAXE_VERSIONS=(dev)
-	local REGEX=">haxe-([0-9]\.[0-9][0-9]*[.0-9]*)-osx\.tar\.gz<"
+	case $PLATFORM in
+		'OSX') local REGEX=">haxe-([0-9]\.[0-9][0-9]*[.0-9]*)-osx\.tar\.gz<" ;;
+		'LINUX32') local REGEX=">haxe-([0-9]\.[0-9][0-9]*[.0-9]*)-linux32\.tar\.gz<" ;;
+		'LINUX64') local REGEX=">haxe-([0-9]\.[0-9][0-9]*[.0-9]*)-linux64\.tar\.gz<" ;;
+	esac
 	local HREFS=$( curl --silent http://old.haxe.org/file/ 2>&1 | grep href )
 	for HREF in $HREFS; do
 		 if [[ $HREF =~ $REGEX ]]; then
