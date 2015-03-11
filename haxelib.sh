@@ -1,3 +1,7 @@
 #!/bin/sh
 source $HVM/config.sh
-exec haxe -cp $HAXELIBPATH --run tools.haxelib.Main "$@"
+if [[ $HAXE == 2* ]]; then
+	exec $HAXEPATH/haxelib "$@"
+else
+	exec haxe -cp $HAXELIBPATH --run tools.haxelib.Main "$@"
+fi

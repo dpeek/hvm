@@ -44,3 +44,10 @@ If you run `hvm use $tool dev` the currently installed `dev` version of `$tool` 
 
 Note that tools are only installed on demand, so if you run `haxe` and the current specified version is not installed hvm will install it.
 
+# Important
+
+The 2.0.0 OS X release of Neko on http://nekovm.org is built for 32 bit. The Haxe compiler uses Neko shared libraries for certain kinds of Regex matching at macro time. However, stable Haxe releases for OS X are now 64bit (since 3.0.0) meaning this bridging is not possible with the 2.0.0 release of Neko. For this reason it is recommended to use the `dev` version of Neko with Haxe 3.x releases (this is the default in `~/.hvm/versions.sh`)
+
+Complicating matters further, before Haxe 3.0.0 Haxelib was distributed as a compiled 32bit Neko binary, so Haxe 2.x releases will not work with Neko `dev`. For this reason you will need to use a stable release of Neko with 2.x releases of Haxe.
+
+Simple, really.
