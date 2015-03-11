@@ -22,7 +22,7 @@ sudo ln -sf ~/.vhm/nekoml.sh /usr/bin/nekoml
 
 Each of those scripts sources `config.sh`, which figures out which binary to use.
 
-The config sources `~/.hvm/versions.sh`, then `~/.hvm/current.sh` and then `./hvmrc` if it exists. The first defines default versions, the second defines the currently selectec global versions (as set with `hvm use`) and the third allows projects to specify specific versions to use.
+The config sources `~/.hvm/versions.sh`, then `~/.hvm/current.sh` and then `./hvmrc` if it exists. The first defines default versions, the second defines the currently selected global versions (as set with `hvm use`) and the third allows projects to specify specific versions to use.
 
 The config script uses the versions to determine the path to the right install, located in `~/.hvm/versions/$(neko|haxe|haxelib)/$version`. If that path does not exist, hvm will install it.
 
@@ -44,7 +44,7 @@ If you run `hvm use $tool dev` the currently installed `dev` version of `$tool` 
 
 Note that tools are only installed on demand, so if you run `haxe` and the current specified version is not installed hvm will install it.
 
-# Important
+# Important notes
 
 The 2.0.0 OS X release of Neko on http://nekovm.org is built for 32 bit. The Haxe compiler uses Neko shared libraries for certain kinds of Regex matching at macro time. However, stable Haxe releases for OS X are now 64bit (since 3.0.0) meaning this bridging is not possible with the 2.0.0 release of Neko. For this reason it is recommended to use the `dev` version of Neko with Haxe 3.x releases (this is the default in `~/.hvm/versions.sh`)
 
