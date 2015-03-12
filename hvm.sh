@@ -36,11 +36,12 @@ hvm_get_neko_versions() {
 }
 
 hvm_valid_version() {
-	if [ "${@:2}" == "dev"]; then
+	if [ "$1" == "dev" ]; then
 		return 0
 	fi
 	local e
 	for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+	echo "version $1 was not one of ${@:2}"
 	return 1
 }
 
@@ -57,27 +58,33 @@ hvm() {
 		case $2 in
 		"haxe" )
 			HAXE=$3
-			hvm_get_haxe_versions
-			hvm_valid_version $3 ${HAXE_VERSIONS[@]} && hvm_save_current || echo "version \"$3\" was not one of (${HAXE_VERSIONS[@]})"
-			if [ "$HAXE" == "dev" ]; then
+			if [ "$HAXE" == "latest" ]; then
 				rm -rf $HVM/versions/haxe/dev
+				HAXE="dev"
 			fi
+			hvm_get_haxe_versions
+			hvm_valid_version $HAXE ${HAXE_VERSIONS[@]} && hvm_save_current
+			source $HVM/config.sh
 		;;
 		"haxelib" )
 			HAXELIB=$3
-			hvm_get_haxelib_versions
-			hvm_valid_version $3 ${HAXELIB_VERSIONS[@]} && hvm_save_current || echo "version \"$3\" was not one of (${HAXELIB_VERSIONS[@]})"
-			if [ "$HAXELIB" == "dev" ]; then
+			if [ "$HAXELIB" == "latest" ]; then
 				rm -rf $HVM/versions/haxelib/dev
+				HAXELIB="dev"
 			fi
+			hvm_get_haxelib_versions
+			hvm_valid_version $HAXELIB ${HAXELIB_VERSIONS[@]} && hvm_save_current
+			source $HVM/config.sh
 		;;
 		"neko" )
 			NEKO=$3
-			hvm_get_neko_versions
-			hvm_valid_version $3 ${NEKO_VERSIONS[@]} && hvm_save_current || echo "version \"$3\" was not one of (${NEKO_VERSIONS[@]})"
-			if [ "$NEKO" == "dev" ]; then
+			if [ "$NEKO" == "latest" ]; then
 				rm -rf $HVM/versions/neko/dev
+				NEKO="dev"
 			fi
+			hvm_get_neko_versions
+			hvm_valid_version $NEKO ${NEKO_VERSIONS[@]} && hvm_save_current
+			source $HVM/config.sh
 		;;
 		* )
 			echo "binary \"$2\" was not one of (neko haxe haxelib)"
@@ -92,6 +99,7 @@ hvm() {
 		sudo ln -sf $HVM/nekotools.sh /usr/bin/nekotools
 		sudo ln -sf $HVM/nekoc.sh /usr/bin/nekoc
 		sudo ln -sf $HVM/nekoml.sh /usr/bin/nekoml
+		source $HVM/config.sh
 	;;
 	"versions" )
 		case $2 in
@@ -121,7 +129,7 @@ hvm() {
 	;;
 	"help" | * )
 		echo "Haxe Version Manager 1.0"
-		echo "Usage: hvm use (neko|haxe|haxelib) (dev|1.2.3)"
+		echo "Usage: hvm use (neko|haxe|haxelib) (latest|dev|1.2.3)"
 		echo "Usage: hvm versions (neko|haxe|haxelib)"
 	;;
 	esac

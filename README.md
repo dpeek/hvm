@@ -40,9 +40,7 @@ hvm use $tool $version
 
 Where `$tool` is one of `neko`, `haxe` or `haxelib` and `$version` is either `dev` for the latest development release, or a released version. An error will be printed if you specify a version that does not exist.
 
-If you run `hvm use $tool dev` the currently installed `dev` version of `$tool` will be deleted so that the next time you run the tool `dev` will be reinstalled.
-
-Note that tools are only installed on demand, so if you run `haxe` and the current specified version is not installed hvm will install it.
+If you run `hvm use $tool latest` the currently installed `dev` version of `$tool` will be reinstalled to ensure you are running the most recent dev release.
 
 # Important notes
 
