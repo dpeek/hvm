@@ -22,6 +22,7 @@ export HAXE_STD_PATH=$HAXEPATH/std
 export HAXELIBPATH=$HVM/versions/haxelib/$HAXELIB
 export NEKOPATH=$HVM/versions/neko/$NEKO
 export DYLD_FALLBACK_LIBRARY_PATH=$NEKOPATH
+export LD_LIBRARY_PATH=$NEKOPATH
 
 # install haxe if needed
 
