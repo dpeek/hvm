@@ -11,7 +11,6 @@ hvm_get_haxe_versions() {
 		'LINUX32') local DOWNLOAD="href='haxe-${VERSION}-linux\(32\)\?.tar\.gz'" ;;
 		'LINUX64') local DOWNLOAD="href=\"haxe-${VERSION}-linux64.tar.gz\"" ;;
 	esac
-	echo $DOWNLOAD
 	HAXE_VERSIONS=()
 	local VERSIONS=$( curl --silent http://old.haxe.org/file/ 2>&1 | grep -o $DOWNLOAD | sed "s/[^0-9]*\($VERSION\).*/\1/" )
 	for VERSION in $VERSIONS; do
