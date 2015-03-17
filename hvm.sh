@@ -4,13 +4,15 @@ source $HVM/versions.sh
 source $HVM/platform.sh
 
 hvm_get_haxe_versions() {
+	PREVIEW="\(-\(alpha\|beta\|rc\)[0-9]\)\?"
+	VERSION="[^-]*${PREVIEW}"
 	case $PLATFORM in
-		'OSX') local DOWNLOAD='href="haxe-[^-]*-osx.tar\.gz' ;;
-		'LINUX32') local DOWNLOAD='href="haxe-[^-]*-linux\(32\)\?.tar\.gz' ;;
-		'LINUX64') local DOWNLOAD='href="haxe-[^-]*-linux64.tar\.gz' ;;
+		'OSX') local DOWNLOAD="href=\"haxe-${VERSION}-osx.tar\.gz\"" ;;
+		'LINUX32') local DOWNLOAD="href=\"haxe-${VERSION}-linux\(32\)\?.tar\.gz\"" ;;
+		'LINUX64') local DOWNLOAD="href=\"haxe-${VERSION}-linux64.tar.gz\"" ;;
 	esac
 	HAXE_VERSIONS=()
-	local VERSIONS=$( curl --silent http://old.haxe.org/file/ 2>&1 | grep -o $DOWNLOAD | sed 's/[^0-9]*\([^-]*\).*/\1/' )
+	local VERSIONS=$( curl --silent http://old.haxe.org/file/ 2>&1 | grep -o $DOWNLOAD | sed "s/[^0-9]*\($VERSION\).*/\1/" )
 	for VERSION in $VERSIONS; do
 		HAXE_VERSIONS+=($VERSION)
 	done
