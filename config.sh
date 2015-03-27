@@ -104,7 +104,7 @@ if [ ! -d "$HAXELIBPATH" ]; then
 	curl "$URL" -o "$ARCHIVE" -# -L
 
 	unzip -qq "$ARCHIVE" -d "$HAXELIBPATH"
-	# rm "$ARCHIVE"
+	rm "$ARCHIVE"
 
 	if [ -d $HAXELIBPATH/package ]; then
 		mv $HAXELIBPATH/package/* $HAXELIBPATH
@@ -114,5 +114,10 @@ if [ ! -d "$HAXELIBPATH" ]; then
 	if [ -d $HAXELIBPATH/haxelib-master/src ]; then
 		mv $HAXELIBPATH/haxelib-master/src/* $HAXELIBPATH
 		rm -rf $HAXELIBPATH/haxelib-master
+	fi
+
+	if [ -d $HAXELIBPATH/src ]; then
+		mv $HAXELIBPATH/src/* $HAXELIBPATH
+		rm -rf $HAXELIBPATH/src
 	fi
 fi
