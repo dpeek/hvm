@@ -17,7 +17,7 @@ fi
 source $HVM/platform.sh
 
 # configure paths
-export HAXEPATH=$HVM/versions/haxe/$HAXE
+HAXEPATH=$HVM/versions/haxe/$HAXE
 export HAXE_STD_PATH=$HAXEPATH/std
 export HAXELIBPATH=$HVM/versions/haxelib/$HAXELIB
 export NEKOPATH=$HVM/versions/neko/$NEKO
@@ -68,11 +68,10 @@ if [ ! -d "$NEKOPATH" ]; then
 	esac
 
 	if [ "$NEKO" == "dev" ]; then
-		URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/mac/neko_latest.tar.gz"
 		case $PLATFORM in
-			'OSX') "http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/mac/neko_latest.tar.gz" ;;
-			'LINUX32') "http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/linux32/neko_latest.tar.gz" ;;
-			'LINUX64') "http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/linux64/neko_latest.tar.gz" ;;
+			'OSX') URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/mac/neko_latest.tar.gz" ;;
+			'LINUX32') URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/linux32/neko_latest.tar.gz" ;;
+			'LINUX64') URL="http://hxbuilds.s3-website-us-east-1.amazonaws.com/builds/neko/linux64/neko_latest.tar.gz" ;;
 		esac
 	fi
 
