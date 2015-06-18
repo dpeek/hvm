@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export HVM=~/.hvm
+
 # source default versions
 source $HVM/versions.sh
 

@@ -1,4 +1,6 @@
-export HVM=$HOME/.hvm
+#!/bin/bash
+
+export HVM=~/.hvm
 
 source $HVM/versions.sh
 source $HVM/platform.sh

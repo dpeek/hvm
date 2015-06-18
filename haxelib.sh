@@ -1,5 +1,5 @@
 #!/bin/bash
-source $HVM/config.sh
+source ~/.hvm/config.sh
 if [[ $HAXE == 2* ]]; then
 	exec $HAXEPATH/haxelib "$@"
 else

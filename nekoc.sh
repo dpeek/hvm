@@ -1,3 +1,3 @@
 #!/bin/bash
-source $HVM/config.sh
+source ~/.hvm/config.sh
 exec $NEKOPATH/nekoc "$@"
