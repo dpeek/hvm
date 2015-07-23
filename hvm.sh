@@ -21,16 +21,17 @@ hvm_get_haxe_versions() {
 
 hvm_get_haxelib_versions() {
 	local VERSIONS=()
-	local REGEX="\"name\">([0-9\.rc\-]*)"
-	local HREFS=$( curl --silent http://lib.haxe.org/p/haxelib_client 2>&1 | grep name )
+	local REGEX=">([0-9\.rc\-]*)<"
+	# https://www.youtube.com/watch?v=w3PoTnkLfxE
+	local HREFS=$( curl --silent http://lib.haxe.org/p/haxelib_client/versions/ 2>&1 | grep "/\" class=\"text" )
 	for HREF in $HREFS; do
-		 if [[ $HREF =~ $REGEX ]]; then
-		 	VERSIONS+=("${BASH_REMATCH[1]}")
-		 fi
+		if [[ $HREF =~ $REGEX ]]; then
+			VERSIONS+=("${BASH_REMATCH[1]}")
+		fi
 	done
 	HAXELIB_VERSIONS=()
 	for (( idx=${#VERSIONS[@]}-1 ; idx>=0 ; idx-- )) ; do
-	    HAXELIB_VERSIONS+=("${VERSIONS[idx]}")
+		HAXELIB_VERSIONS+=("${VERSIONS[idx]}")
 	done
 }
 
