@@ -1,7 +1,7 @@
 # Installation:
 
 ```shell
-git clone git@github.com:dpeek/hvm.git ~/.hvm
+git clone https://github.com/dpeek/hvm.git ~/.hvm
 echo "source ~/.hvm/hvm.sh" >> ~/.profile
 source ~/.profile
 hvm install
