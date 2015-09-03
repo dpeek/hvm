@@ -22,7 +22,7 @@ source $HVM/platform.sh
 HAXEPATH=$HVM/versions/haxe/$HAXE
 export HAXE_STD_PATH=$HAXEPATH/std
 export HAXE_LIBRARY_PATH=$HAXEPATH/std
-export HAXELIB_PATH=$HVM/versions/haxelib/$HAXELIB
+export HAXELIBPATH=$HVM/versions/haxelib/$HAXELIB
 export NEKOPATH=$HVM/versions/neko/$NEKO
 export DYLD_FALLBACK_LIBRARY_PATH=$NEKOPATH
 export LD_LIBRARY_PATH=$NEKOPATH
@@ -91,12 +91,12 @@ if [ ! -d "$NEKOPATH" ]; then
 fi
 
 # install haxelib if needed
-if [ ! -d "$HAXELIB_PATH" ]; then
+if [ ! -d "$HAXELIBPATH" ]; then
 	mkdir -p "$HVM/versions/haxelib"
 
 	VERSION=$( echo "$HAXELIB" | tr "." "," )
 	URL="http://lib.haxe.org/files/3.0/haxelib_client-$VERSION.zip"
-	ARCHIVE="$HAXELIB_PATH.zip"
+	ARCHIVE="$HAXELIBPATH.zip"
 
 	if [ "$HAXELIB" == "dev" ]; then
 		URL="https://github.com/HaxeFoundation/haxelib/archive/master.zip"
@@ -105,21 +105,21 @@ if [ ! -d "$HAXELIB_PATH" ]; then
 	echo "downloading $URL"
 	curl "$URL" -o "$ARCHIVE" -# -L
 
-	unzip -qq "$ARCHIVE" -d "$HAXELIB_PATH"
+	unzip -qq "$ARCHIVE" -d "$HAXELIBPATH"
 	rm "$ARCHIVE"
 
-	if [ -d $HAXELIB_PATH/package ]; then
-		mv $HAXELIB_PATH/package/* $HAXELIB_PATH
-		rmdir $HAXELIB_PATH/package
+	if [ -d $HAXELIBPATH/package ]; then
+		mv $HAXELIBPATH/package/* $HAXELIBPATH
+		rmdir $HAXELIBPATH/package
 	fi
 
-	if [ -d $HAXELIB_PATH/haxelib-master/src ]; then
-		mv $HAXELIB_PATH/haxelib-master/src/* $HAXELIB_PATH
-		rm -rf $HAXELIB_PATH/haxelib-master
+	if [ -d $HAXELIBPATH/haxelib-master/src ]; then
+		mv $HAXELIBPATH/haxelib-master/src/* $HAXELIBPATH
+		rm -rf $HAXELIBPATH/haxelib-master
 	fi
 
-	if [ -d $HAXELIB_PATH/src ]; then
-		mv $HAXELIB_PATH/src/* $HAXELIB_PATH
-		rm -rf $HAXELIB_PATH/src
+	if [ -d $HAXELIBPATH/src ]; then
+		mv $HAXELIBPATH/src/* $HAXELIBPATH
+		rm -rf $HAXELIBPATH/src
 	fi
 fi
