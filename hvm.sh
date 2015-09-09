@@ -2,8 +2,23 @@
 
 export HVM=~/.hvm
 
-source $HVM/versions.sh
+# determine platform
 source $HVM/platform.sh
+
+# TODO (dpeek): can we just source config for the following three directives?
+
+# source default versions
+source $HVM/versions.sh
+
+# source current versions if they exist
+if [ -e $HVM/current.sh ]; then
+	source $HVM/current.sh
+fi
+
+# source local versions if they exist
+if [ -e .hvmrc ]; then
+	source .hvmrc
+fi
 
 hvm_get_haxe_versions() {
 	VERSION="[^-]*(-(alpha|beta|rc)[0-9])?"
