@@ -65,7 +65,7 @@ if [ ! -d "$NEKOPATH" ]; then
 	ARCHIVE="$NEKOPATH.tar.gz"
 
 	case $PLATFORM in
-		'OSX') URL="http://nekovm.org/_media/neko-$NEKO-osx.tar.gz?id=download&cache=cache" ;;
+		'OSX') URL="http://nekovm.org/_media/neko-$NEKO-osx64.tar.gz?id=download&cache=cache" ;;
 		'LINUX32') URL="http://nekovm.org/_media/neko-$NEKO-linux.tar.gz?id=download&cache=cache" ;;
 		'LINUX64') URL="http://nekovm.org/_media/neko-$NEKO-linux64.tar.gz?id=download&cache=cache" ;;
 	esac
