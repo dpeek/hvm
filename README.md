@@ -1,5 +1,17 @@
 # Installation:
 
+If you have an existing Haxe install, you will need to nuke it from orbit:
+
+```shell
+sudo rm -rf /usr/lib/haxe
+sudo rm -rf /usr/lib/neko
+sudo rm /usr/lib/libneko.dylib
+sudo rm /usr/bin/haxe*
+sudo rm /usr/bin/neko*
+```
+
+And then:
+
 ```shell
 git clone https://github.com/dpeek/hvm.git ~/.hvm
 echo "source ~/.hvm/hvm.sh" >> ~/.profile
