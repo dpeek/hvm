@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PREFIX=/usr/local/bin
+VERSION=1.1.0
 
 export HVM=~/.hvm
 
@@ -149,7 +150,7 @@ hvm() {
 		esac
 	;;
 	"help" | * )
-		echo "Haxe Version Manager 1.0"
+		echo "Haxe Version Manager $VERSION"
 		echo "Usage: hvm use (neko|haxe|haxelib) (latest|dev|1.2.3)"
 		echo "Usage: hvm versions (neko|haxe|haxelib)"
 	;;
