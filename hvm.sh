@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PREFIX=/usr/local/bin
+
 export HVM=~/.hvm
 
 # determine platform
@@ -112,12 +114,12 @@ hvm() {
 		esac
 	;;
 	"install" )
-		sudo ln -sf $HVM/haxe.sh /usr/bin/haxe
-		sudo ln -sf $HVM/haxelib.sh /usr/bin/haxelib
-		sudo ln -sf $HVM/neko.sh /usr/bin/neko
-		sudo ln -sf $HVM/nekotools.sh /usr/bin/nekotools
-		sudo ln -sf $HVM/nekoc.sh /usr/bin/nekoc
-		sudo ln -sf $HVM/nekoml.sh /usr/bin/nekoml
+		sudo ln -sf $HVM/haxe.sh $PREFIX/haxe
+		sudo ln -sf $HVM/haxelib.sh $PREFIX/haxelib
+		sudo ln -sf $HVM/neko.sh $PREFIX/neko
+		sudo ln -sf $HVM/nekotools.sh $PREFIX/nekotools
+		sudo ln -sf $HVM/nekoc.sh $PREFIX/nekoc
+		sudo ln -sf $HVM/nekoml.sh $PREFIX/nekoml
 		source $HVM/config.sh
 	;;
 	"versions" )
