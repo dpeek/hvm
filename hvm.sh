@@ -24,14 +24,8 @@ if [ -e .hvmrc ]; then
 fi
 
 hvm_get_haxe_versions() {
-	VERSION="[^-]*(-(alpha|beta|rc)[0-9])?"
-	case $PLATFORM in
-		"OSX") local DOWNLOAD="href=\"haxe-${VERSION}-osx.tar\.gz\"" ;;
-		"LINUX32") local DOWNLOAD="href=\"haxe-${VERSION}-linux(32)?.tar.gz\"" ;;
-		"LINUX64") local DOWNLOAD="href=\"haxe-${VERSION}-linux64.tar.gz\"" ;;
-	esac
 	HAXE_VERSIONS=()
-	local VERSIONS=$( curl --silent http://old.haxe.org/file/ 2>&1 | grep -oE $DOWNLOAD | sed -E "s/[^0-9]*($VERSION).*/\1/" )
+	local VERSIONS=`curl --silent http://haxe.org/download/list 2>&1 | grep -oE 'version\/[^/]+' | cut -d / -f 2 | awk '!a[$0]++'`
 	for VERSION in $VERSIONS; do
 		HAXE_VERSIONS+=($VERSION)
 	done

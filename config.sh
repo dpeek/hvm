@@ -33,11 +33,12 @@ if [ ! -d "$HAXEPATH" ]; then
 	mkdir -p "$HVM/versions/haxe"
 
 	ARCHIVE="$HAXEPATH.tar.gz"
+	DOWNLOADS="http://haxe.org/website-content/downloads"
 
 	case $PLATFORM in
-		'OSX') URL="http://old.haxe.org/file/haxe-$HAXE-osx.tar.gz" ;;
-		'LINUX32') URL="http://old.haxe.org/file/haxe-$HAXE-linux32.tar.gz" ;;
-		'LINUX64') URL="http://old.haxe.org/file/haxe-$HAXE-linux64.tar.gz" ;;
+		'OSX') URL="$DOWNLOADS/$HAXE/downloads/haxe-$HAXE-osx.tar.gz" ;;
+		'LINUX32') URL="$DOWNLOADS/$HAXE/downloads/haxe-$HAXE-linux32.tar.gz" ;;
+		'LINUX64') URL="$DOWNLOADS/$HAXE/downloads/haxe-$HAXE-linux64.tar.gz" ;;
 	esac
 
 
