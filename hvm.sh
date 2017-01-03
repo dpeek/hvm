@@ -25,7 +25,7 @@ fi
 
 hvm_get_haxe_versions() {
 	HAXE_VERSIONS=()
-	local VERSIONS=`curl --silent http://haxe.org/download/list 2>&1 | grep -oE 'version\/[^/]+' | cut -d / -f 2 | awk '!a[$0]++'`
+	local VERSIONS=`curl --silent -L http://haxe.org/download/list 2>&1 | grep -oE 'version\/[^/]+' | cut -d / -f 2 | awk '!a[$0]++'`
 	for VERSION in $VERSIONS; do
 		HAXE_VERSIONS+=($VERSION)
 	done
@@ -35,7 +35,7 @@ hvm_get_haxelib_versions() {
 	local VERSIONS=()
 	local REGEX=">([0-9\.rc\-]*)<"
 	# https://www.youtube.com/watch?v=w3PoTnkLfxE
-	local HREFS=$( curl --silent http://lib.haxe.org/p/haxelib_client/versions/ 2>&1 | grep "/\" class=\"text" )
+	local HREFS=$( curl --silent -L http://lib.haxe.org/p/haxelib_client/versions/ 2>&1 | grep "/\" class=\"text" )
 	for HREF in $HREFS; do
 		if [[ $HREF =~ $REGEX ]]; then
 			VERSIONS+=("${BASH_REMATCH[1]}")

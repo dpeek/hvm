@@ -52,7 +52,7 @@ if [ ! -d "$HAXEPATH" ]; then
 	fi
 
 	echo "downloading $URL"
-	curl "$URL" -o "$ARCHIVE" -#
+	curl "$URL" -o "$ARCHIVE" -# -L
 	mkdir -p "$HAXEPATH"
 
 	tar -xzf "$ARCHIVE" -C "$HAXEPATH" --strip-components=1
@@ -80,7 +80,7 @@ if [ ! -d "$NEKOPATH" ]; then
 	fi
 
 	echo "downloading $URL"
-	curl "$URL" -o "$ARCHIVE" -#
+	curl "$URL" -o "$ARCHIVE" -# -L
 	mkdir -p "$NEKOPATH"
 
 	if [ "$NEKO" == "dev" ]; then
